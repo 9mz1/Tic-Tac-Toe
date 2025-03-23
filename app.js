@@ -40,7 +40,11 @@ function checkWinner() {
 };
 
 function resetGame () {
-
+    boardBtn.forEach((button) => {
+        button.textContent = "";
+        currentPlayer = player1;
+    })
+    gameboard.fill("");
 }
 
 boardBtn.forEach((button) => {
