@@ -39,9 +39,18 @@ function checkWinner() {
     return null;
 };
 
+function checkTie() {
+    if (!gameboard.includes("") && !checkWinner()) {
+        resetGame();
+        return true;
+    }
+    return false
+}
+
 function resetGame () {
     boardBtn.forEach((button) => {
         button.textContent = "";
+        button.disabled = false
         currentPlayer = player1;
     })
     gameboard.fill("");
@@ -54,8 +63,11 @@ boardBtn.forEach((button) => {
             placeMarker(index, currentPlayer);
             button.textContent = currentPlayer.symbol;
             console.log(currentPlayer.symbol);
+            button.disabled = true;
             if (checkWinner()) {
                 alert(`${currentPlayer.name} wins!`);
+            } else if (checkTie()) {
+                alert('Tie!');
             } else {
                 changePlayer();
             }
