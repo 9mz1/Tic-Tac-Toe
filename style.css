@@ -16,6 +16,7 @@
 body, button {
     font-family: "Doto", sans-serif;
     font-weight: 600;
+    transition: 0.1s steps(3, end) all;
 }
 
 body {
@@ -27,6 +28,7 @@ body {
     color: #fff;
     background-color: var(--secondary-color);
     border: 2px solid red;
+    cursor: default;
 } 
 
 
@@ -39,6 +41,12 @@ body {
     gap: 28px;
 }
 
+.top-container > #title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
 .top-container > .game-info {
     display: flex;
     align-items: center;
@@ -46,11 +54,30 @@ body {
     gap: 80px;
 }
 
+.top-container > .game-info, .top-container > #round-info {
+    font-size: 1.8rem;
+}
+
+.top-container > #round-info {
+    color: var(--tertiary-color);
+    font-weight: 900;
+}
+
 .middle-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 100px;
+}
+
+.middle-container > .player-info {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.middle-container > #player1-info {
+    font-weight: 700;
+    color: var(--primary-color);
 }
 
 .gameBoard {
@@ -64,23 +91,36 @@ body {
 .square {
     width: 100px;
     height: 100px;
+    font-size: 2rem;
+    font-weight: 900;
     background-color: transparent;
     /* color: #fff; */
     border: none;
+    cursor: pointer;
 }
-
 .square:disabled {
     opacity: 100%;
-    color: lightgreen;
-    background-color: var(--tertiary-color);
+    color: var(--primary-color);
 }
-
 .square.middle {
     border-top: var(--box-border);
     border-bottom: var(--box-border);
 }
-
 .square.center {
     border-left: var(--box-border);
     border-right: var(--box-border);
+}
+
+#resetBtn {
+    font-size: 1.1rem;
+    font-weight: 900;
+    padding: 14px 35px;
+    border-radius: 1px;
+    color: var(--secondary-color);
+    background-color: var(--tertiary-color);
+    border: none;
+    cursor: pointer;
+}
+#resetBtn:hover {
+    background-color: var(--primary-color);
 }

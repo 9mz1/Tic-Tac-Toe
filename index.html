@@ -9,16 +9,16 @@
 <body>
 
     <div class="top-container">
-        <h2>Tic-Tac-Toe</h2>
+        <h2 id="title">Tic-Tac-Toe</h2>
         <div class="game-info">
-            <p class="score-info player1-score">Player-1: 0</p>
-            <p class="score-info player2-score">Player-2: 0</p>
+            <p class="score-info" id="player1-score">Player-1: 0</p>
+            <p class="score-info" id="player2-score">Player-2: 0</p>
         </div>
-        <h2 class="round-info">Round: 01</h2>
+        <p id="round-info">Round: 01</p>
     </div>
     
     <div class="middle-container">
-        <p class="player-info player1-info">Player-1: X</p>
+        <p class="player-info" id="player1-info">Player-1: X</p>
         <div class="gameBoard">
             <button class="square" data-index="0"></button>
             <button class="square center" data-index="1"></button>
@@ -30,7 +30,7 @@
             <button class="square center" data-index="7"></button>
             <button class="square" data-index="8"></button>
         </div>
-        <p class="player-info player2-info">Player-2: O</p>
+        <p class="player-info" id="player2-info">Player-2: O</p>
     </div>
 
     <button id="resetBtn">Restart</button>
