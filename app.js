@@ -1,6 +1,9 @@
 // Variables
 const boardBtn = document.querySelectorAll('.square');
 const restartBtn = document.querySelector('#resetBtn');
+const player1ScoreInfo = document.querySelector('#player1-score');
+const player2ScoreInfo = document.querySelector('#player2-score');
+const roundInfo = document.querySelector('#round-info');
 const player1Info = document.querySelector('#player1-info');
 const player2Info = document.querySelector('#player2-info');
 
@@ -13,6 +16,7 @@ let currentPlayer = player1;
 let player1Score = 0;
 let player2Score = 0;
 let totalRounds = 5;
+let currentRound = 0;
 
 
 // Function to place player marker on board
@@ -60,14 +64,13 @@ function checkWinner() {
 // Function to check for tie
 function checkTie() {
     if (!gameboard.includes("") && !checkWinner()) {
-        resetGame();
         return true;
     }
     return false
 }
 
-//Fucntion to reset game
-function resetGame () {
+//Fucntion to reset board
+function resetBoard () {
     boardBtn.forEach((button) => {
         button.textContent = "";
         button.disabled = false
@@ -77,44 +80,93 @@ function resetGame () {
 }
 
 function game() {
-    if (player1Score === totalRounds || player2Score === totalRounds) {
-        console.log('YOU WONNN');
+    setTimeout(() => {roundInfo.textContent = `Round: 0${currentRound + 1}`;}, 700);
+
+    player1ScoreInfo.textContent = `Player-1: ${player1Score}`;
+    player2ScoreInfo.textContent = `Player-2: ${player2Score}`;
+    if (player1Score > player2Score) {
+        player1ScoreInfo.style.color = '#7EBC03';
+        player2ScoreInfo.style.color = '#FFF';
+    } else if (player2Score > player1Score) {
+        player2ScoreInfo.style.color = '#7EBC03';
+        player1ScoreInfo.style.color = '#FFF';
     } else {
-        console.log('you lost');
+        player1ScoreInfo.style.color = '#FFF';
+        player2ScoreInfo.style.color = '#FFF';
     }
 
-    console.log('looo');
+    if (currentRound === totalRounds) {
+        if (player1Score > player2Score) {
+            roundInfo.textContent = `${player1.name} wins!`;
+        } else if (player2Score > player1Score) {
+            roundInfo.textContent = `${player2.name} wins!`;
+        } else {
+            roundInfo.textContent = 'Tie!';
+
+        }
+    }
 }
 
-// normal game function
+function resetGame() {
+    gameboard.fill("");
+    currentRound = 0;
+    player1Score = 0;
+    player2Score = 0;
+    currentPlayer = player1;
+
+    roundInfo.textContent = `Round: 0${currentRound + 1}`;
+    player1ScoreInfo.textContent = `Player-1: ${player1Score}`;
+    player2ScoreInfo.textContent = `Player-2: ${player2Score}`;
+
+    player1ScoreInfo.style.color = '#FFF';
+    player2ScoreInfo.style.color = '#FFF';
+
+    
+    boardBtn.forEach((button) => {
+        button.textContent = "";
+        button.disabled = false
+        currentPlayer = player1;
+    })
+
+    alert('Game Restarted')
+}
+
 boardBtn.forEach((button) => {
+
     button.addEventListener('click', () => {
         let index = button.getAttribute('data-index');
         button.textContent = currentPlayer.symbol;
+
         if (gameboard[index] === "") {
             placeMarker(index, currentPlayer);
             button.textContent = currentPlayer.symbol;
             console.log(currentPlayer.symbol);
             button.disabled = true;
+
             if (checkWinner()) {
-                alert(`${currentPlayer.name} wins!`);
+                roundInfo.textContent = `${currentPlayer.name} wins round ${currentRound + 1}!`;
+
                 if (currentPlayer.name === player1.name) {
                     player1Score++;
-                    console.log(`Player1: ${player1Score}, Player2: ${player2Score}`)
+                    
                 } else {
                     player2Score++;
-                    console.log(`Player1: ${player1Score}, Player2: ${player2Score}`)
+                
                 }
-                resetGame();
+
+                resetBoard();
+                currentRound++;
+                game();
             } else if (checkTie()) {
-                alert('Tie!');
+                roundInfo.textContent = 'Tie!';
                 console.log(`Player1: ${player1Score}, Player2: ${player2Score}`)
-                resetGame();
+                resetBoard();
+                currentRound++;
+                game();
             } else {
                 changePlayer();
             }
         }   
-        game();
     })
 
     button.addEventListener('mouseenter', () => {
@@ -130,5 +182,7 @@ boardBtn.forEach((button) => {
         }
     })
 })
+
+game();
 
 restartBtn.addEventListener('click', resetGame);
