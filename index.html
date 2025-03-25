@@ -7,19 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="top-container">
+        <h2>Tic-Tac-Toe</h2>
+        <div class="game-info">
+            <p class="score-info player1-score">Player-1: 0</p>
+            <p class="score-info player2-score">Player-2: 0</p>
+        </div>
+        <h2 class="round-info">Round: 01</h2>
+    </div>
     
-    <div class="gameBoard-container">
+    <div class="middle-container">
+        <p class="player-info player1-info">Player-1: X</p>
         <div class="gameBoard">
             <button class="square" data-index="0"></button>
-            <button class="square" data-index="1"></button>
+            <button class="square center" data-index="1"></button>
             <button class="square" data-index="2"></button>
-            <button class="square" data-index="3"></button>
-            <button class="square" data-index="4"></button>
-            <button class="square" data-index="5"></button>
+            <button class="square middle" data-index="3"></button>
+            <button class="square middle center" data-index="4"></button>
+            <button class="square middle" data-index="5"></button>
             <button class="square" data-index="6"></button>
-            <button class="square" data-index="7"></button>
+            <button class="square center" data-index="7"></button>
             <button class="square" data-index="8"></button>
         </div>
+        <p class="player-info player2-info">Player-2: O</p>
     </div>
 
     <button id="resetBtn">Restart</button>

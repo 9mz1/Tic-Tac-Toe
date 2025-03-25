@@ -1,13 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+
+:root {
+    --primary-color: #7EBC03;
+    --secondary-color: #000000;
+    --tertiary-color: #973128;
+    --box-border: 3px solid var(--primary-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, button {
+    font-family: "Doto", sans-serif;
+    font-weight: 600;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 100vh;
+    color: #fff;
+    background-color: var(--secondary-color);
+    border: 2px solid red;
+} 
+
+
+
+.top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+}
+
+.top-container > .game-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.middle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
 
 .gameBoard {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    width: 125px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
 }
 
 .square {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    /* color: #fff; */
+    border: none;
+}
+
+.square:disabled {
+    opacity: 100%;
+    color: lightgreen;
+    background-color: var(--tertiary-color);
+}
+
+.square.middle {
+    border-top: var(--box-border);
+    border-bottom: var(--box-border);
+}
+
+.square.center {
+    border-left: var(--box-border);
+    border-right: var(--box-border);
 }
