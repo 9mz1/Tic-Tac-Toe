@@ -6,6 +6,8 @@ const player2ScoreInfo = document.querySelector('#player2-score');
 const roundInfo = document.querySelector('#round-info');
 const player1Info = document.querySelector('#player1-info');
 const player2Info = document.querySelector('#player2-info');
+const startDialog = document.querySelector('#start-dialog');
+const submitBtn = document.querySelector('#submit-btn');
 
 const gameboard = ["", "", "", "", "", "", "", "", "",];
 

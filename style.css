@@ -13,7 +13,7 @@
     box-sizing: border-box;
 }
 
-body, button {
+body, button, input {
     font-family: "Doto", sans-serif;
     font-weight: 600;
     transition: 0.1s steps(3, end) all;
@@ -31,11 +31,134 @@ body {
     cursor: default;
 }
 
+button {
+    cursor: pointer;
+}
+
+dialog {
+    position: fixed;
+    inset: 0;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: auto;
+    border: none;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid blue;
+}
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+}
+
+input {
+    font-weight: 800;
+    font-size: 1.4rem;
+    padding: 10px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: 2px dotted var(--primary-color);
+}
+input:focus {
+    outline: 3px dashed var(--primary-color);
+}
+
+label {
+    cursor: pointer;
+}
+
 .hover {
     color: var(--primary-color);
 }
 
 
+
+#start-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 98px;
+    height: 100vh;
+    width: 100vw;
+    color: white;
+}
+
+#start-form button {
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+#start-form > #title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+#start-form > .inputs {
+    display: flex;
+    justify-content: center;
+    gap: 160px;
+    font-size: 1.6rem;
+}
+
+#start-form .inputs > .player1-input, #start-form .inputs > .player2-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+#start-form .secondary-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+#start-form .secondary-inputs > .chooser{
+    display: flex;
+    gap: 46px;
+}
+
+#start-form .secondary-inputs > .chooser > button {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+#start-form .secondary-inputs > .chooser > button:nth-child(1) {
+    color: var(--primary-color);
+    font-weight: 900;
+}
+#start-form .secondary-inputs > .chooser > button:nth-child(2) {
+    opacity: 55%;
+    font-weight: 300;
+    cursor: not-allowed;
+}
+#start-form .secondary-inputs > .chooser > button:nth-child(1):hover {
+    text-decoration: underline overline;
+    text-decoration-style: dashed;
+    text-underline-offset: 4px;
+}
+
+#start-form > #submit-btn {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+#start-form > #submit-btn:hover {
+    text-decoration: underline overline;
+    text-decoration-style: dashed;
+    text-underline-offset: 10px;
+}
 
 .top-container {
     display: flex;
@@ -43,12 +166,6 @@ body {
     align-items: center;
     justify-content: center;
     gap: 28px;
-}
-
-.top-container > #title {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--primary-color);
 }
 
 .top-container > .game-info {
@@ -123,7 +240,6 @@ body {
     color: var(--secondary-color);
     background-color: var(--tertiary-color);
     border: none;
-    cursor: pointer;
 }
 #resetBtn:hover {
     background-color: var(--primary-color);
