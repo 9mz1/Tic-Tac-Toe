@@ -11,15 +11,27 @@ const submitBtn = document.querySelector('#submit-btn');
 
 const gameboard = ["", "", "", "", "", "", "", "", "",];
 
-const player1 = {name: 'player1', symbol: 'x'};
-const player2 = {name: 'player2', symbol: 'o'};
+// submit button function
+submitBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    let player1Name = document.querySelector('.player1-name').value;
+    let player2Name = document.querySelector('.player2-name').value;
+    player1Name = player1Name.charAt(0).toUpperCase() + player1Name.slice(1);
+    player2Name = player2Name.charAt(0).toUpperCase() + player2Name.slice(1);
+    startDialog.close();
+    player1.name = player1Name;
+    player2.name = player2Name;
+    game();
+})
+
+const player1 = {name: 'Player-1', symbol: 'x'};
+const player2 = {name: 'Player-2', symbol: 'o'};
 
 let currentPlayer = player1;
 let player1Score = 0;
 let player2Score = 0;
 let totalRounds = 5;
 let currentRound = 0;
-
 
 // Function to place player marker on board
 function placeMarker(index, player) {
@@ -81,11 +93,15 @@ function resetBoard () {
     gameboard.fill("");
 }
 
+// Main game function
 function game() {
     setTimeout(() => {roundInfo.textContent = `Round: 0${currentRound + 1}`;}, 700);
 
-    player1ScoreInfo.textContent = `Player-1: ${player1Score}`;
-    player2ScoreInfo.textContent = `Player-2: ${player2Score}`;
+    player1ScoreInfo.textContent = `${player1.name}: ${player1Score}`;
+    player2ScoreInfo.textContent = `${player2.name}: ${player2Score}`;
+    player1Info.textContent = `${player1.name}: ${player1.symbol}`;
+    player2Info.textContent = `${player2.name}: ${player2.symbol}`;
+    console.log(player1.name);
     if (player1Score > player2Score) {
         player1ScoreInfo.style.color = '#7EBC03';
         player2ScoreInfo.style.color = '#FFF';
@@ -109,6 +125,7 @@ function game() {
     }
 }
 
+// Function to reset game
 function resetGame() {
     gameboard.fill("");
     currentRound = 0;
@@ -117,8 +134,8 @@ function resetGame() {
     currentPlayer = player1;
 
     roundInfo.textContent = `Round: 0${currentRound + 1}`;
-    player1ScoreInfo.textContent = `Player-1: ${player1Score}`;
-    player2ScoreInfo.textContent = `Player-2: ${player2Score}`;
+    player1ScoreInfo.textContent = `${player1.name}: ${player1Score}`;
+    player2ScoreInfo.textContent = `${player2.name}: ${player2Score}`;
 
     player1ScoreInfo.style.color = '#FFF';
     player2ScoreInfo.style.color = '#FFF';
