@@ -23,7 +23,7 @@ const player2 = {name: 'Player-2', symbol: 'o'};
 let currentPlayer = player1;
 let player1Score = 0;
 let player2Score = 0;
-let totalRounds = 2;
+let totalRounds = 5;
 let currentRound = 0;
 
 // submit button function
