@@ -1,6 +1,6 @@
 // Variables
 const boardBtn = document.querySelectorAll('.square');
-const restartBtn = document.querySelector('#resetBtn');
+const resetBtn = document.querySelector('#reset-btn');
 const player1ScoreInfo = document.querySelector('#player1-score');
 const player2ScoreInfo = document.querySelector('#player2-score');
 const roundInfo = document.querySelector('#round-info');
@@ -8,8 +8,21 @@ const player1Info = document.querySelector('#player1-info');
 const player2Info = document.querySelector('#player2-info');
 const startDialog = document.querySelector('#start-dialog');
 const submitBtn = document.querySelector('#submit-btn');
+const secondDialog = document.querySelector('#second-dialog');
+const restartBtn = document.querySelector('#restart-btn');
+const refreshBtn = document.querySelector('#refresh-btn');
 
 const gameboard = ["", "", "", "", "", "", "", "", "",];
+
+
+const player1 = {name: 'Player-1', symbol: 'x'};
+const player2 = {name: 'Player-2', symbol: 'o'};
+
+let currentPlayer = player1;
+let player1Score = 0;
+let player2Score = 0;
+let totalRounds = 5;
+let currentRound = 0;
 
 // submit button function
 submitBtn.addEventListener('click', (event) => {
@@ -24,14 +37,23 @@ submitBtn.addEventListener('click', (event) => {
     game();
 })
 
-const player1 = {name: 'Player-1', symbol: 'x'};
-const player2 = {name: 'Player-2', symbol: 'o'};
 
-let currentPlayer = player1;
-let player1Score = 0;
-let player2Score = 0;
-let totalRounds = 5;
-let currentRound = 0;
+resetBtn.addEventListener('click', () => {
+    secondDialog.showModal();
+});
+
+restartBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    secondDialog.close();
+    resetGame();
+});
+
+refreshBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    secondDialog.close();
+    startDialog.showModal();
+    resetGame();
+})
 
 // Function to place player marker on board
 function placeMarker(index, player) {
@@ -146,8 +168,6 @@ function resetGame() {
         button.disabled = false
         currentPlayer = player1;
     })
-
-    alert('Game Restarted')
 }
 
 boardBtn.forEach((button) => {
@@ -202,6 +222,6 @@ boardBtn.forEach((button) => {
     })
 })
 
-game();
 
-restartBtn.addEventListener('click', resetGame);
+secondDialog.close();
+game();
