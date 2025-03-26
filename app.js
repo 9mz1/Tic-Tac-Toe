@@ -9,8 +9,10 @@ const player2Info = document.querySelector('#player2-info');
 const startDialog = document.querySelector('#start-dialog');
 const submitBtn = document.querySelector('#submit-btn');
 const secondDialog = document.querySelector('#second-dialog');
+const phrase = document.querySelector('#phrase');
 const restartBtn = document.querySelector('#restart-btn');
 const refreshBtn = document.querySelector('#refresh-btn');
+const backBtn = document.querySelector('#back-btn');
 
 const gameboard = ["", "", "", "", "", "", "", "", "",];
 
@@ -21,7 +23,7 @@ const player2 = {name: 'Player-2', symbol: 'o'};
 let currentPlayer = player1;
 let player1Score = 0;
 let player2Score = 0;
-let totalRounds = 5;
+let totalRounds = 2;
 let currentRound = 0;
 
 // submit button function
@@ -39,6 +41,10 @@ submitBtn.addEventListener('click', (event) => {
 
 
 resetBtn.addEventListener('click', () => {
+    phrase.textContent = 'Are You Sure?'
+    restartBtn.textContent = 'Restart';
+    refreshBtn.textContent = 'Restart With Different Names';
+    backBtn.style.display = 'block';
     secondDialog.showModal();
 });
 
@@ -53,6 +59,11 @@ refreshBtn.addEventListener('click', (event) => {
     secondDialog.close();
     startDialog.showModal();
     resetGame();
+})
+
+backBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    secondDialog.close();
 })
 
 // Function to place player marker on board
@@ -137,12 +148,23 @@ function game() {
 
     if (currentRound === totalRounds) {
         if (player1Score > player2Score) {
-            roundInfo.textContent = `${player1.name} wins!`;
+            phrase.textContent = `${player1.name} Wins!!`;
+            restartBtn.textContent = 'Play Again';
+            refreshBtn.textContent = 'Play Again With Different Names';
+            backBtn.style.display = 'none';
+            secondDialog.showModal();
         } else if (player2Score > player1Score) {
-            roundInfo.textContent = `${player2.name} wins!`;
+            phrase.textContent = `${player2.name} Wins!!`;
+            restartBtn.textContent = 'Play Again';
+            refreshBtn.textContent = 'Play Again With Different Names';
+            backBtn.style.display = 'none';
+            secondDialog.showModal();
         } else {
-            roundInfo.textContent = 'Tie!';
-
+            phrase.textContent = 'Tie!!';
+            restartBtn.textContent = 'Play Again';
+            refreshBtn.textContent = 'Play Again With Different Names';
+            backBtn.style.display = 'none';
+            secondDialog.showModal();
         }
     }
 }
